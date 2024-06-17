@@ -1,1 +1,401 @@
+c++
+1) #include <iostream>
+#include <cmath>
 
+using namespace std;
+
+double rectangleMethod(double a, double b, double n) {
+    double h = (b - a) / n;
+    double sum = 0;
+    for (int i = 0; i < n; ++i) {
+        double x = a + i * h;
+        double f = pow(x, 4) / (14 + pow(x, 2));
+        sum += f;
+    }
+    return h * sum;
+}
+
+double trapezeMethod(double a, double b, double n) {
+    double h = (b - a) / n;
+    double sum = 0.5 * (f(a) + f(b));
+    for (int i = 1; i < n; ++i) {
+        double x = a + i * h;
+        double f = pow(x, 4) / (14 + pow(x, 2));
+        sum += f;
+    }
+    return h * sum;
+}
+
+double simpsonMethod(double a, double b, double n) {
+    double h = (b - a) / n;
+    double sum1 = f(a) + f(b);
+    double sum2 = 0;
+    for (int i = 1; i < n; ++i) {
+        double x = a + i * h;
+        double f = pow(x, 4) / (14 + pow(x, 2));
+        sum1 += f;
+        if (i % 2 == 0) {
+            sum2 += f;
+        }
+    }
+    return h / 6 * (sum1 + 4 * sum2);
+}
+
+double f(double x) {
+    return pow(x, 4) / (14 + pow(x, 2));
+}
+
+int main() {
+    double a = 0;
+    double b = 1;
+    int n = 1000000;
+
+    double resultRectangle = rectangleMethod(a, b, n);
+    double resultTrapeze = trapezeMethod(a, b, n);
+    double resultSimpson = simpsonMethod(a, b, n);
+
+    cout << "Прямоугольники: " << resultRectangle << endl;
+    cout << "Трапеции: " << resultTrapeze << endl;
+    cout << "Симпсона: " << resultSimpson << endl;
+
+    return 0;
+}
+2) 
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double rectangleMethod(double a, double b, double n) {
+    double h = (b - a) / n;
+    double sum = 0;
+    for (int i = 0; i < n; ++i) {
+        double x = a + i * h;
+        double f = (e^(-2 * x) * sin(14 * x)) / (14 * x + 1);
+        sum += f;
+    }
+    return h * sum;
+}
+
+double trapezeMethod(double a, double b, double n) {
+    double h = (b - a) / n;
+    double sum = 0.5 * (f(a) + f(b));
+    for (int i = 1; i < n; ++i) {
+        double x = a + i * h;
+        double f = (e^(-2 * x) * sin(14 * x)) / (14 * x + 1);
+        sum += f;
+    }
+    return h * sum;
+}
+
+double simpsonMethod(double a, double b, double n) {
+    double h = (b - a) / n;
+    double sum1 = f(a) + f(b);
+    double sum2 = 0;
+    for (int i = 1; i < n; ++i) {
+        double x = a + i * h;
+        double f = (e^(-2 * x) * sin(14 * x)) / (14 * x + 1);
+        sum1 += f;
+        if (i % 2 == 0) {
+            sum2 += f;
+        }
+    }
+    return h / 6 * (sum1 + 4 * sum2);
+}
+
+double f(double x) {
+    return (e^(-2 * x) * sin(14 * x)) / (14 * x + 1);
+}
+
+int main() {
+    double a = 0;
+    double b = 1;
+    int n = 1000000;
+
+    double resultRectangle = rectangleMethod(a, b, n);
+    double resultTrapeze = trapezeMethod(a, b, n);
+    double resultSimpson = simpsonMethod(a, b, n);
+
+    cout << "Прямоугольники: " << resultRectangle << endl;
+    cout << "Трапеции: " << resultTrapeze << endl;
+    cout << "Симпсона: " << resultSimpson << endl;
+
+    return 0;
+}
+3) #include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double alternatingSeriesSum(int n) {
+    double sum = 0;
+    for (int i = 1; i <= n; ++i) {
+        double sign = pow(-1, i - 1);
+        double term = sign / (2 * i - 1);
+        sum += term;
+    }
+    return sum;
+}
+
+int main() {
+    int n = 1000000;
+    double result = alternatingSeriesSum(n);
+
+    cout << "Сумма ряда: " << result << endl;
+
+    return 0;
+}
+4) #include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double seriesSum(double x, int n) {
+    double sum = 0;
+    for (int k = 1; k <= n; ++k) {
+        double term = pow(-1, k - 1) * sin(k * x) + 14 + k * k;
+        sum += term;
+    }
+    return sum;
+}
+
+int main() {
+    double x = 0;
+    int n = 1000000;
+
+    double result = seriesSum(x, n);
+
+    cout << "Сумма ряда: " << result << endl;
+
+    return 0;
+}
+
+python
+
+1) import numpy as np
+
+def rectangle_method(a, b, n, f):
+  """
+  Вычисляет значение определенного интеграла методом прямоугольников.
+
+  Args:
+    a: Нижний предел интегрирования.
+    b: Верхний предел интегрирования.
+    n: Количество разбиений отрезка интегрирования.
+    f: Функция, под интегралом.
+
+  Returns:
+    Численное значение интеграла.
+  """
+  h = (b - a) / n
+  x = np.linspace(a, b, n + 1)
+  y = f(x)
+  return h * np.sum(y[:-1])
+
+def trapeze_method(a, b, n, f):
+  """
+  Вычисляет значение определенного интеграла методом трапеций.
+
+  Args:
+    a: Нижний предел интегрирования.
+    b: Верхний предел интегрирования.
+    n: Количество разбиений отрезка интегрирования.
+    f: Функция, под интегралом.
+
+  Returns:
+    Численное значение интеграла.
+  """
+  h = (b - a) / n
+  x = np.linspace(a, b, n + 1)
+  y = f(x)
+  return h / 2 * (y[0] + 2 * np.sum(y[1:-1]) + y[-1])
+
+def simpson_method(a, b, n, f):
+  """
+  Вычисляет значение определенного интеграла методом Симпсона.
+
+  Args:
+    a: Нижний предел интегрирования.
+    b: Верхний предел интегрирования.
+    n: Количество разбиений отрезка интегрирования.
+    f: Функция, под интегралом.
+
+  Returns:
+    Численное значение интеграла.
+  """
+  h = (b - a) / n
+  x = np.linspace(a, b, n + 1)
+  y = f(x)
+  return h / 6 * (y[0] + y[-1] + 4 * np.sum(y[1:-1]) + 2 * np.sum(y[2::2]))
+
+# Функция под интегралом
+def f(x):
+  return x  4 / (14 + x  2) ** 0.5
+
+# Вычисление интеграла методом прямоугольников
+a = 0
+b = 1
+n = 1000
+I_rectangle = rectangle_method(a, b, n, f)
+print("Метод прямоугольников:", I_rectangle)
+
+# Вычисление интеграла методом трапеций
+I_trapeze = trapeze_method(a, b, n, f)
+print("Метод трапеций:", I_trapeze)
+
+# Вычисление интеграла методом Симпсона
+I_simpson = simpson_method(a, b, n, f)
+print("Метод Симпсона:", I_simpson)
+
+2) import numpy as np
+
+def rectangle_method_inf(a, b, n, f):
+  """
+  Вычисляет значение неопределенного интеграла методом прямоугольников.
+
+  Args:
+    a: Нижний предел интегрирования.
+    b: Верхний предел интегрирования.
+    n: Количество разбиений отрезка интегрирования.
+    f: Функция, под интегралом.
+
+  Returns:
+    Численное значение интеграла.
+  """
+  h = (b - a) / n
+  x = np.linspace(a, b, n + 1)
+  y = f(x)
+  return h * np.sum(y[:-1])
+
+def trapeze_method_inf(a, b, n, f):
+  """
+  Вычисляет значение неопределенного интеграла методом трапеций.
+
+  Args:
+    a: Нижний предел интегрирования.
+    b: Верхний предел интегрирования.
+    n: Количество разбиений отрезка интегрирования.
+    f: Функция, под интегралом.
+
+  Returns:
+    Численное значение интеграла.
+  """
+  h = (b - a) / n
+  x = np.linspace(a, b, n + 1)
+  y = f(x)
+  return h / 2 * (y[0] + 2 * np.sum(y[1:-1]) + y[-1])
+
+def simpson_method_inf(a, b, n, f):
+  """
+  Вычисляет значение неопределенного интеграла методом Симпсона.
+
+  Args:
+    a: Нижний предел интегрирования.
+    b: Верхний предел интегрирования.
+    n: Количество разбиений отрезка интегрирования.
+    f: Функция, под интегралом.
+
+  Returns:
+    Численное значение интеграла.
+  """
+  h = (b - a) / n
+  x = np.linspace(a, b, n + 1)
+  y = f(x)
+  return h / 6 * (y[0] + y[-1] + 4 * np.sum(y[1:-1]) + 2 * np.sum(y[2::2]))
+
+# Функция под интегралом
+def f(x):
+  return 8 * np.exp(-2 * x) * np.sin(14 * x)
+
+# Вычисление интеграла методом прямоугольников
+a = 0
+b = 1
+n = 1000
+I_rectangle_inf = rectangle_method_inf(a, b, n, f)
+print("Метод прямоугольников:", I_rectangle_inf)
+
+# Вычисление интеграла методом трапеций
+I_trapeze_inf = trapeze_method_inf(a, b, n, f)
+print("Метод трапеций:", I_trapeze_inf)
+
+# Вычисление интеграла методом Симпсона
+I_simpson_inf = simpson_method_inf(a, b, n, f)
+print("Метод Симпсона:", I_simpson_inf)
+3) import numpy as np
+
+def series_sum(n, f):
+  """
+  Вычисляет сумму числового ряда.
+
+  Args:
+    n: Количество членов ряда.
+    f: Функция, определяющая n-й член ряда.
+
+  Returns:
+    Сумма ряда.
+  """
+  s = 0
+  for i in range(n):
+    s += f(i)
+  return s
+
+# Функция, определяющая n-й член ряда
+def f(n):
+  return (-1)  n * (2 * n - 1) / ((2 * n)  3 - 1)
+
+# Вычисление суммы ряда
+n = 1000
+S = series_sum(n, f)
+print("Сумма ряда:", S)
+4) 
+import numpy as np
+
+def series_sum_func(n, x):
+  """
+  Вычисляет сумму функционального ряда.
+
+  Args:
+    n: Количество членов ряда.
+    x: Значение аргумента, для которого вычисляется сумма.
+
+  Returns:
+    Сумма ряда.
+  """
+  s = 0
+  for k in range(1, n + 1):
+    s += (-1)  (k - 1) * np.sin(k * x) + 14 + k  2
+  return s
+
+def trapeze_method_inf(a, b, n, f, x):
+  """
+  Вычисляет значение неопределенного интеграла методом трапеций.
+
+  Args:
+    a: Нижний предел интегрирования.
+    b: Верхний предел интегрирования.
+    n: Количество разбиений отрезка интегрирования.
+    f: Функция, под интегралом.
+    x: Значение аргумента, для которого вычисляется интеграл.
+
+  Returns:
+    Численное значение интеграла.
+  """
+  h = (b - a) / n
+  x_arr = np.linspace(a, b, n + 1)
+  y_arr = f(x_arr, x)
+  return h / 2 * (y_arr[0] + 2 * np.sum(y_arr[1:-1]) + y_arr[-1])
+
+# Вычисление суммы ряда
+x = 1
+n = 1000
+S_func = series_sum_func(n, x)
+
+# Вычисление интеграла методом трапеций
+a = 0
+b = 1
+I_trapeze_inf = trapeze_method_inf(a, b, n, series_sum_func, x)
+
+# Вычисление суммы ряда
+S = I_trapeze_inf - 14 * x
+
+print("Сумма ряда:", S)
